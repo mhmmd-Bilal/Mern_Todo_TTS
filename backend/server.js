@@ -1,6 +1,7 @@
 import express from "express";
 import connectDb from "./config/db.js";
 import dotenv from "dotenv";
+import Todos from "./models/todoModel.js";
 
 const app = express();
 
@@ -21,9 +22,15 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-app.post("/create", (req, res) => {
-  console.log(req.body);
-  res.send("great");
+app.post("/create", async(req, res) => {
+  let {title,description} = req.body
+
+  let todo = await Todos.create({
+    title,
+    description
+  })
+
+  res.send(todo);
 });
 
 app.listen(port, () => console.log("server started"));

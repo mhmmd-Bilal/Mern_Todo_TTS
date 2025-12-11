@@ -1,7 +1,7 @@
 import express from "express";
 import connectDb from "./config/db.js";
 import dotenv from "dotenv";
-import Todos from "./models/todoModel.js";
+import todoRoute from "./routes/todoRoutes.js";
 
 const app = express();
 
@@ -16,22 +16,10 @@ app.use(express.urlencoded({extended : true}))  // used to parse form data (HTML
 
 // app.method(path , handler)
 
-// http://localhost:3000/
+// http://localhost:3000/api/todo
 
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
+app.use('/api/todo' , todoRoute)
 
-app.post("/create", async(req, res) => {
-  let {title,description} = req.body
-
-  let todo = await Todos.create({
-    title,
-    description
-  })
-
-  res.send(todo);
-});
 
 app.listen(port, () => console.log("server started"));
 

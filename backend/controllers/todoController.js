@@ -17,8 +17,26 @@ const createTodo = async (req, res) => {
   res.send(todo);
 };
 
+const deleteTodo = async (req, res) => {
+  const deleted = await Todos.findByIdAndDelete(req.params.id);
 
-export {
-    getTodos,
-    createTodo
-}
+  if (!deleted) {
+    return res.status(404).json({ message: "Todo not found" });
+  }
+
+  res.json({ message: "Todo Deleted" });
+};
+
+const getTodoById = async (req, res) => {
+  const { id } = req.query;
+
+  const todo = await Todos.findById(id);
+
+  if (!todo) {
+    return res.status(404).json({ message: "Todo not found" });
+  }
+
+  res.json(todo);
+};
+
+export { getTodos, createTodo, deleteTodo , getTodoById };

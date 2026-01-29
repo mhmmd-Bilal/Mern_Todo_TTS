@@ -2,6 +2,7 @@ import express from "express";
 import connectDb from "./config/db.js";
 import dotenv from "dotenv";
 import todoRoute from "./routes/todoRoutes.js";
+import cors from 'cors'
 
 const app = express();
 
@@ -13,6 +14,8 @@ connectDb();
 
 app.use(express.json()); // parses JSON body sent from frontend/postman - data will be available in req.body
 app.use(express.urlencoded({extended : true}))  // used to parse form data (HTML form submission) - data will be available in req.body
+
+app.use(cors())
 
 // app.method(path , handler)
 

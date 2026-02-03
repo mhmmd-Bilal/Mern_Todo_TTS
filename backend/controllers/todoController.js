@@ -39,4 +39,16 @@ const getTodoById = async (req, res) => {
   res.json(todo);
 };
 
-export { getTodos, createTodo, deleteTodo , getTodoById };
+const updateTodo = async (req, res) => {
+  let { title, description, isCompleted, id } = req.body;
+
+  let update = await Todos.findByIdAndUpdate(id, {
+    title,
+    description,
+    isCompleted,
+  });
+
+  res.json({ message: "Todo Update", update });
+};
+
+export { getTodos, createTodo, deleteTodo, getTodoById, updateTodo };

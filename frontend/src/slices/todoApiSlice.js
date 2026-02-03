@@ -21,8 +21,26 @@ const todoApiSlice = apiSlice.injectEndpoints({
         body: id,
       }),
     }),
+    getTodoById: builder.query({
+      query: (params) => ({
+        url: "/api/todo/getTodoById",
+        params,
+      }),
+    }),
+    updateTodo : builder.mutation({
+      query : (data)=>({
+        url : '/api/todo/updateTodo',
+        method :'PATCH',
+        body : data
+      })
+    })
   }),
 });
 
-export const { useAddTodoMutation, useGetTodosQuery, useDeleteTodoMutation } =
-  todoApiSlice;
+export const {
+  useAddTodoMutation,
+  useGetTodosQuery,
+  useDeleteTodoMutation,
+  useGetTodoByIdQuery,
+  useUpdateTodoMutation
+} = todoApiSlice;

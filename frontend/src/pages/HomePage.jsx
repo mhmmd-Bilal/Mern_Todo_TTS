@@ -68,7 +68,7 @@ function HomePage() {
               <div className="todo-actions">
                 <button
                   className="edit"
-                  onClick={() => navigate(`/edit/${todo._id}`)}
+                  onClick={()=>navigate(`/edit/${todo._id}`)}
                 >
                   Edit
                 </button>

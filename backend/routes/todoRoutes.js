@@ -1,5 +1,5 @@
 import express from 'express'
-import { createTodo, deleteTodo, getTodoById, getTodos } from '../controllers/todoController.js'
+import { createTodo, deleteTodo, getTodoById, getTodos, updateTodo } from '../controllers/todoController.js'
 
 const todoRoute = express.Router()
 
@@ -15,6 +15,9 @@ todoRoute.delete('/:id',deleteTodo)
 
 // http://localhost:3000/api/todo/getTodoById
 todoRoute.get('/getTodoById' , getTodoById)
+
+
+todoRoute.patch('/updateTodo',updateTodo)
 
 
 

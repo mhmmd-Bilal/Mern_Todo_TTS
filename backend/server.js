@@ -2,6 +2,7 @@ import express from "express";
 import connectDb from "./config/db.js";
 import dotenv from "dotenv";
 import todoRoute from "./routes/todoRoutes.js";
+import userRoute from "./routes/userRoutes.js";
 import cors from 'cors'
 
 const app = express();
@@ -22,6 +23,10 @@ app.use(cors())
 // http://localhost:3000/api/todo
 
 app.use('/api/todo' , todoRoute)
+
+
+// http://localhost:3000/api/user
+app.use('/api/user',userRoute)
 
 
 app.listen(port, () => console.log("server started"));

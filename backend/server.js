@@ -18,7 +18,13 @@ connectDb();
 app.use(express.json()); // parses JSON body sent from frontend/postman - data will be available in req.body
 app.use(express.urlencoded({ extended: true })); // used to parse form data (HTML form submission) - data will be available in req.body
 app.use(cookieParser());
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "https://todo-9c5d.onrender.com",
+    credentials: true,
+  }),
+);
 
 // app.method(path , handler)
 
@@ -28,10 +34,8 @@ app.use("/api/todo", todoRoute);
 // http://localhost:3000/api/user
 app.use("/api/user", userRoute);
 
-
-app.use(notFound)
-app.use(errorHandler)
-
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(port, () => console.log("server started"));
 
